@@ -1,6 +1,8 @@
 package com.polkhovskyi.appstore.controllers;
 
+import com.polkhovskyi.appstore.dao.CategoryService;
 import com.polkhovskyi.appstore.dto.Category;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,28 +18,12 @@ import java.util.List;
 @Controller
 public class CategoryController {
 
-    List<Category> myList = new ArrayList<Category>();
-    public CategoryController()
-    {
-        Category temp = new Category();
-        temp.title = "Category 1";
-        temp.id = "1";
-        myList.add(temp);
-
-        temp = new Category();
-        temp.title = "Category 2";
-        temp.id = "2";
-        myList.add(temp);
-
-        temp = new Category();
-        temp.title = "Category 3";
-        temp.id = "3";
-        myList.add(temp);
-    }
+    @Autowired
+    private CategoryService categoryService;
 
     @RequestMapping("/category")
     public String category(Model model) {
-        model.addAttribute("name", myList);
+        model.addAttribute("name", categoryService.getCategories());
         return "category";
     }
 
@@ -45,11 +31,10 @@ public class CategoryController {
     public String categoryById(
             @PathVariable String id,
             Model model) {
-        for (Category category : myList) {
+        for (Category category : categoryService.getCategories()) {
             if (category.id.equals(id)) {
                 model.addAttribute("selected", id);
                 return "selected";
-
             }
         }
 
