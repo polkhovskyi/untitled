@@ -5,6 +5,7 @@ package com.polkhovskyi.appstore.dto;
  */
 public class Category {
     public String title;
+    public String id;
 
     public String getTitle()
     {
