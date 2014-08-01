@@ -1,0 +1,14 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+    <title>Getting Started: Serving Web Content</title> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<div th:each="cat:${name}">
+    <a href="category.html" th:href="@{/{orderId}(orderId=${cat.id})}"
+            th:text="${cat.title}"></a>
+</div>
+
+</body>
+</html>

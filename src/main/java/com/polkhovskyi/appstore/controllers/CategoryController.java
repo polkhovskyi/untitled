@@ -21,13 +21,13 @@ public class CategoryController {
     @Autowired
     private CategoryService categoryService;
 
-    @RequestMapping("/category")
+    @RequestMapping("/")
     public String category(Model model) {
         model.addAttribute("name", categoryService.getCategories());
-        return "category";
+        return "index";
     }
 
-    @RequestMapping("/category/{id}")
+    @RequestMapping("/{id}")
     public String categoryById(
             @PathVariable String id,
             Model model) {
